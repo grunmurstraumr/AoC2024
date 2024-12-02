@@ -1,4 +1,4 @@
-package se.g.ida.aoc.day01;
+package se.g.ida.aoc.days;
 
 import se.g.ida.aoc.common.ColumnSeparator;
 import se.g.ida.aoc.common.FileReader;
@@ -7,16 +7,36 @@ import se.g.ida.aoc.common.mapping.LongMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Day01 {
+public class Day01 extends DefaultDay<Long> {
     private final int rows;
     List<List<Long>> columns;
 
-    private Day01(List<List<Long>> columns) {
+    public Day01(String inputFilename){
+        super(inputFilename);
+        this.columns = ColumnSeparator.separate(FileReader.readInputFile(inputFilename), new LongMapper());
         this.rows = columns.getFirst().size();
         if (!columns.stream().allMatch(column -> column.size() == rows)){
             throw new IllegalArgumentException("All columns must have the same number of rows.");
         }
-        this.columns = columns;
+    }
+
+    @Override
+    public Long runPart1(){
+        return computeDistances().stream().mapToLong(Long::longValue).sum();
+    }
+
+    @Override
+    public Long runPart2(){
+        long totalSimilarity = 0;
+        for (int row = 0; row < rows; row++) {
+            Long value = columns.get(0).get(row);
+            long repetitionCount = 0;
+            for (int columnIndex = 1; columnIndex < columns.size(); columnIndex++){
+                repetitionCount += columns.get(columnIndex).stream().filter(value::equals).count();
+            }
+            totalSimilarity += repetitionCount * value;
+        }
+        return totalSimilarity;
     }
 
     private List<Long>computeDistances(){
@@ -35,27 +55,5 @@ public class Day01 {
             distance = distance > columnValue ? distance - columnValue : columnValue - distance;
         }
         return distance;
-    }
-
-    public long getTotalDistance(){
-        return computeDistances().stream().mapToLong(Long::longValue).sum();
-    }
-
-    public long getTotalSimilarityScore(){
-        long totalSimilarity = 0;
-        for (int row = 0; row < rows; row++) {
-            Long value = columns.get(0).get(row);
-            long repetitionCount = 0;
-            for (int columnIndex = 1; columnIndex < columns.size(); columnIndex++){
-                repetitionCount += columns.get(columnIndex).stream().filter(value::equals).count();
-            }
-            totalSimilarity += repetitionCount * value;
-        }
-        return totalSimilarity;
-    }
-
-    public static Day01 fromFile(String filename) {
-        List<List<Long>> columns = ColumnSeparator.separate(FileReader.readInputFile(filename), new LongMapper());
-        return new Day01(columns);
     }
 }
