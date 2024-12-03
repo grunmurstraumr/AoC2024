@@ -25,6 +25,14 @@ public class Pair<E> extends AbstractCollection<E> {
         return new Pair<>(itemA, itemB);
     }
 
+    public E getFirst(){
+        return items.get(0);
+    }
+
+    public E getSecond(){
+        return items.get(1);
+    }
+
     @Override
     public int size() {
         return 2;
