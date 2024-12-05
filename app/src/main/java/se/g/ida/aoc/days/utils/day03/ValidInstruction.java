@@ -1,6 +1,5 @@
 package se.g.ida.aoc.days.utils.day03;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import se.g.ida.aoc.common.Pair;
 
