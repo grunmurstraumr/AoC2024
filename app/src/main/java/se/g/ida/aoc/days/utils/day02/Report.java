@@ -32,7 +32,7 @@ public class Report {
         for (int i = 1; i < report.size(); i++) {
             Integer a = report.get(i - 1);
             Integer b = report.get(i);
-            var offendingIndexes = Pair.of(i - 1, i);
+            Pair<Integer> offendingIndexes = Pair.of(i - 1, i);
             if (isOutsideMinMaxThreshold(a, b)) {
                 violations.add(Violations.Type.DIFFERENCE_THRESHOLD, offendingIndexes);
             }
