@@ -21,7 +21,7 @@ public class Pair<E> extends AbstractCollection<E> {
         items = List.copyOf(collection);
     }
 
-    public static <E> Pair<Object> of(E itemA, E itemB) {
+    public static <E> Pair<E> of(E itemA, E itemB) {
         return new Pair<>(itemA, itemB);
     }
 

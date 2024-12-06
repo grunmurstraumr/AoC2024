@@ -7,9 +7,9 @@ import java.util.stream.Stream;
 
 public class Violations<E>{
     public enum Type{DIFFERENCE_THRESHOLD, INCREASING_VIOLATION, DECREASING_VIOLATION}
-    List<Pair<Object>> differenceThresholdViolations;
-    List<Pair<Object>> increasingViolations;
-    List<Pair<Object>> decreasingViolations;
+    List<Pair<E>> differenceThresholdViolations;
+    List<Pair<E>> increasingViolations;
+    List<Pair<E>> decreasingViolations;
 
     public Violations() {
         differenceThresholdViolations = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Violations<E>{
         decreasingViolations = new ArrayList<>();
     }
 
-    public void add(Type violationType, Pair<Object> violatingIndexes){
+    public void add(Type violationType, Pair<E> violatingIndexes){
         switch(violationType){
             case DIFFERENCE_THRESHOLD -> differenceThresholdViolations.add(violatingIndexes);
             case INCREASING_VIOLATION -> increasingViolations.add(violatingIndexes);
