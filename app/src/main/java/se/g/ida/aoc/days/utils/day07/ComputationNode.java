@@ -41,6 +41,14 @@ public class ComputationNode {
         return this.sourceEdge;
     }
 
+    public boolean hasChildren(){
+        return !this.targetEdges.isEmpty();
+    }
+
+    public List<ComputationEdge> getChildren(){
+        return this.targetEdges;
+    }
+
     public boolean hasLeftChild(){
         return this.targetEdges.size() > 0;
     }

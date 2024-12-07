@@ -50,16 +50,14 @@ public class ComputationGraph {
 
     boolean findInOrder(ComputationNode node, long value){
         if (node != null){
-            if (node.hasLeftChild() && node.hasRightChild()){
-                boolean foundInLeftBranch = findInOrder(node.getLeftEdge().getTarget(), value);
-                return foundInLeftBranch ? foundInLeftBranch : findInOrder(node.getRightEdge().getTarget(), value);
-//                return node.getLeftEdge().getValue() == value;
+            if (node.getChildren().size() > 1){
+                boolean foundInLeftBranch = findInOrder(node.getChildren().get(0).getTarget(), value);
+                return foundInLeftBranch ? foundInLeftBranch : findInOrder(node.getChildren().get(1).getTarget(), value);
             }
-            else if (node.hasRightChild()){
+            else if (node.getChildren().size() == 2){
                 return findInOrder(node.getRightEdge().getTarget(), value);
-                //return node.getRightEdge().getValue() == value;
             }
-            else if (node.hasLeftChild()){
+            else if (node.getChildren().size() == 1){
                 return findInOrder(node.getLeftEdge().getTarget(), value);
             }
             return node.getParentEdge().getValue() == value;
