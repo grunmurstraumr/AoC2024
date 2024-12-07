@@ -1,9 +1,8 @@
 package se.g.ida.aoc.days.utils.day07;
 
 import lombok.Getter;
-import se.g.ida.aoc.common.MutablePair;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ComputationNode {
@@ -16,7 +15,7 @@ public class ComputationNode {
 
     public ComputationNode(Long value) {
         this.value = value;
-        targetEdges = new ArrayList<>();
+        targetEdges = new LinkedList<>();
     }
 
     public ComputationNode addSourceEdge(ComputationEdge edge){
@@ -24,7 +23,11 @@ public class ComputationNode {
         return this;
     }
 
-    public ComputationNode addChild(ComputationNode childNode, Operator operator) {
+    public void addEdge(ComputationEdge edge){
+        this.targetEdges.add(edge);
+    }
+
+    public ComputationNode addChild(ComputationNode childNode, OperatorPartOne operator) {
         ComputationEdge edge = new ComputationEdge(this, childNode, operator);
         if (!childNode.hasParent()) { // Sholud really also check that parent is this....
             childNode.addSourceEdge(edge);

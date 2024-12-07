@@ -20,18 +20,20 @@ public class Day07 extends DefaultDay<Long> {
 
     private Computation parseInputLines(String line){
         String[] splitLine = line.split(":");
-        Long expectedResult = Long.valueOf(line.split(":")[0].strip());
-        ComputationGraph graph = ComputationGraph.build(Arrays.stream(splitLine[1].split(" ")).filter(not(String::isBlank)).map(Long::valueOf).toList());
+        long expectedResult = Long.parseLong(line.split(":")[0].strip());
+        ComputationGraph graph = ComputationGraph.build(Arrays.stream(splitLine[1].split(" ")).filter(not(String::isBlank)).map(Long::valueOf).toList(), expectedResult);
         return new Computation(expectedResult, graph);
     }
 
     @Override
     public Long runPart1() {
+
         return computations.stream().filter(Computation::isValid).mapToLong(Computation::getResult).sum();
     }
 
     @Override
     public Long runPart2() {
+        long sumOfValid
         return 0L;
     }
 }

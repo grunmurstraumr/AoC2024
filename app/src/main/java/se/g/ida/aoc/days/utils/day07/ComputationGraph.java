@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -16,24 +16,32 @@ public class ComputationGraph {
     private int deapth = 0;
 
 
-    public static ComputationGraph build(List<Long> operands) {
+    public static ComputationGraph build(List<Long> operands, long targetValue) {
         ComputationGraph instance = new ComputationGraph();
-        List<ComputationNode> previousNodes = new ArrayList<>();
+        List<ComputationNode> previousNodes = new LinkedList<>();
         for (Long operand : operands) {
             instance.deapth++;
 
-            List<ComputationNode> newNodes = new ArrayList<>();
+            List<ComputationNode> newNodes = new LinkedList<>();
             if (instance.root == null) {
                 instance.root = new ComputationNode(operand);
                 previousNodes.add(instance.root);
             }
             else {
+                boolean foundTarget = false;
                 for (var previousNode : previousNodes) {
-                    for (Operator operator : Operator.values()) {
-                        ComputationNode leftNode = new ComputationNode(operand);
-                        previousNode.addChild(leftNode, operator);
-                        newNodes.add(leftNode);
+                    for (OperatorPartOne operator : OperatorPartOne.values()) {
+                        ComputationNode newNode = new ComputationNode(operand);
+                        ComputationEdge edge = new ComputationEdge(previousNode, newNode, operator );
+                        previousNode.addChild(newNode, operator);
+                        newNodes.add(newNode);
+                        if (instance.findInOrder(edge.getTarget(), targetValue)){
+                            foundTarget = true;
+                            break;
+                        }
                     }
+                    if (foundTarget)
+                        break;
                 }
                 previousNodes = newNodes;
             }

@@ -6,9 +6,9 @@ import lombok.Getter;
 public class ComputationEdge {
     private final ComputationNode source;
     private final ComputationNode target;
-    private final Operator operator;
+    private final OperatorPartOne operator;
     private final long value;
-    public ComputationEdge(ComputationNode source, ComputationNode target, Operator operator) {
+    public ComputationEdge(ComputationNode source, ComputationNode target, OperatorPartOne operator) {
         this.source = source;
         this.target = target;
         this.operator = operator;
