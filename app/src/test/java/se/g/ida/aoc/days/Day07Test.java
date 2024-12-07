@@ -19,21 +19,21 @@ public class Day07Test {
     void runPartOne() {
         Day<Long> day = new Day07(PUZZLE_INPUT);
         long answer = day.runPart1();
-//        assertEquals(303766880536L, answer);
+        assertEquals(303766880536L, answer);
         System.out.println(answer);
     }
 
     @Test
     void examplePartTwo() {
         Day<Long> day = new Day07(EXAMPLE_FILE);
-        assertEquals(6, day.runPart2());
+        assertEquals(11387, day.runPart2());
     }
 
     @Test
     void runPartTwo() {
         Day<Long> day = new Day07(PUZZLE_INPUT);
         long answer = day.runPart2();
-        assertEquals( 1939, answer);
+        //assertEquals( 1939, answer);
         System.out.println(answer);
     }
 }

@@ -1,6 +1,5 @@
 package se.g.ida.aoc.days.utils.day07;
 
-import lombok.EqualsAndHashCode;
 import lombok.Value;
 
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.List;
 public class Computation{
 
     Long result;
+    List<Long> operands;
     ComputationGraph graph;
 
     public boolean isValid(){

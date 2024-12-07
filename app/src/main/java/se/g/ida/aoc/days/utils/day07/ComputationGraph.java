@@ -16,7 +16,7 @@ public class ComputationGraph {
     private int deapth = 0;
 
 
-    public static ComputationGraph build(List<Long> operands, long targetValue) {
+    public static ComputationGraph build(List<Long> operands, long targetValue, List<Operator> operators) {
         ComputationGraph instance = new ComputationGraph();
         List<ComputationNode> previousNodes = new LinkedList<>();
         for (Long operand : operands) {
@@ -30,7 +30,7 @@ public class ComputationGraph {
             else {
                 boolean foundTarget = false;
                 for (var previousNode : previousNodes) {
-                    for (OperatorPartOne operator : OperatorPartOne.values()) {
+                    for (Operator operator : operators) {
                         ComputationNode newNode = new ComputationNode(operand);
                         ComputationEdge edge = new ComputationEdge(previousNode, newNode, operator );
                         previousNode.addChild(newNode, operator);

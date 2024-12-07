@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import java.util.function.BinaryOperator;
 
 @AllArgsConstructor
-public enum OperatorPartOne {
+public enum Operator {
     MULTIPLY(new Multiplication()), ADD(new Addition()), CONCAT(new Concat());
 
     private BinaryOperator<Long> operation;

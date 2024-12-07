@@ -27,7 +27,7 @@ public class ComputationNode {
         this.targetEdges.add(edge);
     }
 
-    public ComputationNode addChild(ComputationNode childNode, OperatorPartOne operator) {
+    public ComputationNode addChild(ComputationNode childNode, Operator operator) {
         ComputationEdge edge = new ComputationEdge(this, childNode, operator);
         if (!childNode.hasParent()) { // Sholud really also check that parent is this....
             childNode.addSourceEdge(edge);

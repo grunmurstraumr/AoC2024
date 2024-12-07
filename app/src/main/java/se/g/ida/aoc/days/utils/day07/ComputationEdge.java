@@ -6,17 +6,19 @@ import lombok.Getter;
 public class ComputationEdge {
     private final ComputationNode source;
     private final ComputationNode target;
-    private final OperatorPartOne operator;
-    private final long value;
-    public ComputationEdge(ComputationNode source, ComputationNode target, OperatorPartOne operator) {
+    private final Operator operator;
+    public ComputationEdge(ComputationNode source, ComputationNode target, Operator operator) {
         this.source = source;
         this.target = target;
         this.operator = operator;
-        this.value = this.compute();
     }
 
     private Long compute(){
         Long leftOperand = source.hasParent() ? source.getParentEdge().getValue() : source.getValue();
         return operator.apply(leftOperand, target.getValue());
+    }
+
+    public long getValue() {
+        return this.compute();
     }
 }
