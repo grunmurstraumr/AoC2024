@@ -15,8 +15,6 @@ import java.util.stream.Stream;
 public class Day06 extends DefaultDay<Long>{
     PuzzleMap puzzleMap;
     Guard guard;
-    private static final int GRID_SIZE = 130 * 130;
-
     protected Day06(String inputFilename) {
         super(inputFilename);
         List<String> inputLines = FileReader.readInputFile(inputFilename);
