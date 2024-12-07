@@ -3,17 +3,20 @@ package se.g.ida.aoc.days.utils.day07;
 import lombok.Getter;
 import se.g.ida.aoc.common.MutablePair;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ComputationNode {
 
     @Getter
     private final Long value;
 
     private ComputationEdge sourceEdge;
-    private MutablePair<ComputationEdge> targetEdges;
+    private List<ComputationEdge> targetEdges;
 
     public ComputationNode(Long value) {
         this.value = value;
-        targetEdges = new MutablePair<ComputationEdge>();
+        targetEdges = new ArrayList<>();
     }
 
     public ComputationNode addSourceEdge(ComputationEdge edge){
@@ -21,41 +24,12 @@ public class ComputationNode {
         return this;
     }
 
-    public ComputationNode addLeftTargetEdge(ComputationEdge edge){
-        this.targetEdges.setFirst(edge);
-        return this;
-    }
-
-    public ComputationNode addLeftChild(ComputationNode childNode, Operator operator){
-        ComputationEdge edge = new ComputationEdge(this, childNode, operator);
-        childNode.sourceEdge = edge;
-        this.targetEdges.setFirst(edge);
-        return this;
-    }
-
     public ComputationNode addChild(ComputationNode childNode, Operator operator) {
         ComputationEdge edge = new ComputationEdge(this, childNode, operator);
         if (!childNode.hasParent()) { // Sholud really also check that parent is this....
-            childNode.sourceEdge = edge;
+            childNode.addSourceEdge(edge);
         }
-        if (this.targetEdges.getFirst() == null) {
-            this.targetEdges.setFirst(edge);
-        }
-        else {
-            this.targetEdges.setSecond(edge);
-        }
-        return this;
-    }
-
-    public ComputationNode addRightTargetEdge(ComputationEdge edge){
-        this.targetEdges.setSecond(edge);
-        return this;
-    }
-
-    public ComputationNode addRightChild(ComputationNode childNode, Operator operator){
-        ComputationEdge edge = new ComputationEdge(this, childNode, operator);
-        childNode.sourceEdge = edge;
-        this.targetEdges.setSecond(edge);
+        this.targetEdges.add(edge);
         return this;
     }
 
@@ -68,19 +42,19 @@ public class ComputationNode {
     }
 
     public boolean hasLeftChild(){
-        return this.targetEdges.getFirst() != null;
+        return this.targetEdges.size() > 0;
     }
 
     public ComputationEdge getLeftEdge(){
-        return this.targetEdges.getFirst();
+        return this.targetEdges.get(0);
     }
 
     public boolean hasRightChild(){
-        return this.targetEdges.getSecond() != null;
+        return this.targetEdges.size() > 1;
     }
 
     public ComputationEdge getRightEdge(){
-        return this.targetEdges.getSecond();
+        return this.targetEdges.get(1);
     }
     @Override
     public boolean equals(Object o) {
