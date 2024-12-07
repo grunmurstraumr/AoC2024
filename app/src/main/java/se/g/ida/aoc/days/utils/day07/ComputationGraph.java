@@ -48,15 +48,14 @@ public class ComputationGraph {
 
     boolean findInOrder(ComputationNode node, long value){
         if (node != null){
-            if (node.getChildren().size() > 1){
-                boolean foundInLeftBranch = findInOrder(node.getChildren().get(0).getTarget(), value);
-                return foundInLeftBranch ? foundInLeftBranch : findInOrder(node.getChildren().get(1).getTarget(), value);
-            }
-            else if (node.getChildren().size() == 2){
-                return findInOrder(node.getRightEdge().getTarget(), value);
-            }
-            else if (node.getChildren().size() == 1){
-                return findInOrder(node.getLeftEdge().getTarget(), value);
+            if (node.hasChildren()) {
+                for (ComputationEdge childEdge : node.getChildren()) {
+                    boolean found = findInOrder(childEdge.getTarget(), value);
+                    if (found) {
+                        return true;
+                    }
+                }
+                return false;
             }
             return node.getParentEdge().getValue() == value;
         }
