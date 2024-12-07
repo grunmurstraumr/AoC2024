@@ -30,11 +30,11 @@ public class ComputationGraph {
             else {
                 for (var previousNode : previousNodes) {
                     ComputationNode leftNode = new ComputationNode(operand);
-                    previousNode.addLeftChild(leftNode, Operator.ADD);
+                    previousNode.addChild(leftNode, Operator.ADD);
                     newNodes.add(leftNode);
 
                     ComputationNode rightNode = new ComputationNode(operand);
-                    previousNode.addRightChild(rightNode, Operator.MULTIPLY);;
+                    previousNode.addChild(rightNode, Operator.MULTIPLY);
                     newNodes.add(rightNode);
                 }
                 previousNodes = newNodes;

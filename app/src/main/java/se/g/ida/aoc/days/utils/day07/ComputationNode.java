@@ -33,6 +33,20 @@ public class ComputationNode {
         return this;
     }
 
+    public ComputationNode addChild(ComputationNode childNode, Operator operator) {
+        ComputationEdge edge = new ComputationEdge(this, childNode, operator);
+        if (!childNode.hasParent()) { // Sholud really also check that parent is this....
+            childNode.sourceEdge = edge;
+        }
+        if (this.targetEdges.getFirst() == null) {
+            this.targetEdges.setFirst(edge);
+        }
+        else {
+            this.targetEdges.setSecond(edge);
+        }
+        return this;
+    }
+
     public ComputationNode addRightTargetEdge(ComputationEdge edge){
         this.targetEdges.setSecond(edge);
         return this;
