@@ -2,14 +2,12 @@ package se.g.ida.aoc.days.utils.day06;
 
 
 import lombok.Getter;
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 import se.g.ida.aoc.common.spatial.Coordinate;
 import se.g.ida.aoc.common.spatial.Direction;
 import se.g.ida.aoc.common.spatial.DirectionNavigator;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 public class Guard {
     Coordinate position;
@@ -76,7 +74,7 @@ public class Guard {
         throw new IllegalStateException("Guard is stuck.");
     }
 
-    public Pair<Object> moveAndPlaceObstacleInPath(){
+    public HomogenousPair<Object> moveAndPlaceObstacleInPath(){
         for(int i = 0; i < 4; i++){
             if (canMove())
             {
@@ -87,7 +85,7 @@ public class Guard {
                 Optional<MapPosition> loc = space.getLocation(this.position);
                 loc.ifPresent(mapPosition -> this.looping = mapPosition.isVisited(facing));
                 loc.ifPresent(mapPosition -> mapPosition.visit(facing));
-                return Pair.of(spaceCopyWithNewObstacle, newPosition);
+                return HomogenousPair.of(spaceCopyWithNewObstacle, newPosition);
             }
             rotateClockwise();
         }

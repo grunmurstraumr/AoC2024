@@ -1,15 +1,15 @@
 package se.g.ida.aoc.days.utils.day02;
 
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 public class Violations<E>{
     public enum Type{DIFFERENCE_THRESHOLD, INCREASING_VIOLATION, DECREASING_VIOLATION}
-    List<Pair<E>> differenceThresholdViolations;
-    List<Pair<E>> increasingViolations;
-    List<Pair<E>> decreasingViolations;
+    List<HomogenousPair<E>> differenceThresholdViolations;
+    List<HomogenousPair<E>> increasingViolations;
+    List<HomogenousPair<E>> decreasingViolations;
 
     public Violations() {
         differenceThresholdViolations = new ArrayList<>();
@@ -17,7 +17,7 @@ public class Violations<E>{
         decreasingViolations = new ArrayList<>();
     }
 
-    public void add(Type violationType, Pair<E> violatingIndexes){
+    public void add(Type violationType, HomogenousPair<E> violatingIndexes){
         switch(violationType){
             case DIFFERENCE_THRESHOLD -> differenceThresholdViolations.add(violatingIndexes);
             case INCREASING_VIOLATION -> increasingViolations.add(violatingIndexes);

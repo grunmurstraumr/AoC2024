@@ -1,6 +1,5 @@
 package se.g.ida.aoc.days;
 
-import se.g.ida.aoc.common.Pair;
 import se.g.ida.aoc.days.utils.day07.Computation;
 import se.g.ida.aoc.common.FileReader;
 import se.g.ida.aoc.days.utils.day07.ComputationGraph;

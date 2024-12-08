@@ -1,7 +1,7 @@
 package se.g.ida.aoc.days.utils.day02;
 
 import lombok.AllArgsConstructor;
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,7 +32,7 @@ public class Report {
         for (int i = 1; i < report.size(); i++) {
             Integer a = report.get(i - 1);
             Integer b = report.get(i);
-            Pair<Integer> offendingIndexes = Pair.of(i - 1, i);
+            HomogenousPair<Integer> offendingIndexes = HomogenousPair.of(i - 1, i);
             if (isOutsideMinMaxThreshold(a, b)) {
                 violations.add(Violations.Type.DIFFERENCE_THRESHOLD, offendingIndexes);
             }

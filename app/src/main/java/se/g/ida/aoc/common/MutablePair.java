@@ -2,7 +2,7 @@ package se.g.ida.aoc.common;
 
 import java.util.*;
 
-public class MutablePair<E> extends AbstractCollection<E> {
+public class MutablePair<E> extends AbstractCollection<E> implements Pair<E, E> {
     private static final int SIZE = 2;
     List<E> items;
 
@@ -38,8 +38,8 @@ public class MutablePair<E> extends AbstractCollection<E> {
         this.items.add(itemB);
     }
 
-    public static <E> Pair<E> of(E itemA, E itemB) {
-        return new Pair<>(itemA, itemB);
+    public static <E> HomogenousPair<E> of(E itemA, E itemB) {
+        return new HomogenousPair<>(itemA, itemB);
     }
 
     public E getFirst() {

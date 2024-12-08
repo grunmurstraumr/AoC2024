@@ -1,14 +1,14 @@
 package se.g.ida.aoc.days.utils.day03;
 
 import lombok.Getter;
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 
 import java.util.regex.MatchResult;
 
 public class ValidInstruction {
     @Getter
     private Operator operator;
-    private final Pair<Long> operands;
+    private final HomogenousPair<Long> operands;
     @Getter
     private final int index;
     @Getter
@@ -21,11 +21,11 @@ public class ValidInstruction {
         this.operands = extractOperands(operator, instructionToParse);
     }
 
-    private Pair<Long> extractOperands(Operator operator, String instructionToParse) {
+    private HomogenousPair<Long> extractOperands(Operator operator, String instructionToParse) {
         if (operator.hasOperation()) {
-            return new Pair<>(operator.getOperandMatcher().matcher(instructionToParse).results().map(MatchResult::group).map(Long::valueOf).toList());
+            return new HomogenousPair<>(operator.getOperandMatcher().matcher(instructionToParse).results().map(MatchResult::group).map(Long::valueOf).toList());
         }
-        return new Pair<>(0L, 0L);
+        return new HomogenousPair<>(0L, 0L);
     }
 
     public long compute() {

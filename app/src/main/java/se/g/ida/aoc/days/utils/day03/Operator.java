@@ -1,7 +1,7 @@
 package se.g.ida.aoc.days.utils.day03;
 
 import lombok.Getter;
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 
 import java.util.function.BinaryOperator;
 import java.util.regex.Pattern;
@@ -24,7 +24,7 @@ public enum Operator {
         this.operation = operation;
     }
 
-    public long apply(Pair<Long> operands){
+    public long apply(HomogenousPair<Long> operands){
         return this.operation.apply(operands.getFirst(), operands.getSecond());
     }
 

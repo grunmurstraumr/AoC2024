@@ -1,7 +1,7 @@
 package se.g.ida.aoc.days;
 
 import se.g.ida.aoc.common.FileReader;
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 import se.g.ida.aoc.days.utils.day05.PrinterRule;
 import se.g.ida.aoc.days.utils.day05.SortingRule;
 
@@ -18,12 +18,12 @@ public class Day05 extends DefaultDay<Long> {
     public Day05(String inputFilename) {
         super(inputFilename);
         List<String> inputLines = FileReader.readInputFile(inputFilename);
-        Pair<List<String>> sectionedInput = splitSections(inputLines);
+        HomogenousPair<List<String>> sectionedInput = splitSections(inputLines);
         rules = parseRules(sectionedInput.getFirst());
         updates = parseInstructions(sectionedInput.getSecond());
     }
 
-    private Pair<List<String>> splitSections(List<String> lines) {
+    private HomogenousPair<List<String>> splitSections(List<String> lines) {
         List<String> rules = new ArrayList<>();
         List<String> updates = new ArrayList<>();
         boolean rulesSection = true;
@@ -36,7 +36,7 @@ public class Day05 extends DefaultDay<Long> {
                 updates.add(line);
             }
         }
-        return new Pair<>(rules, updates);
+        return new HomogenousPair<>(rules, updates);
     }
 
     private List<PrinterRule> parseRules(List<String> lines) {

@@ -1,16 +1,13 @@
 package se.g.ida.aoc.days;
 
 import se.g.ida.aoc.common.FileReader;
-import se.g.ida.aoc.common.Pair;
+import se.g.ida.aoc.common.HomogenousPair;
 import se.g.ida.aoc.common.spatial.Coordinate;
-import se.g.ida.aoc.common.spatial.Direction;
-import se.g.ida.aoc.common.spatial.Matrix;
 import se.g.ida.aoc.days.utils.day06.Guard;
 import se.g.ida.aoc.days.utils.day06.MapPosition;
 import se.g.ida.aoc.days.utils.day06.PuzzleMap;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Day06 extends DefaultDay<Long>{
     PuzzleMap puzzleMap;
@@ -41,7 +38,7 @@ public class Day06 extends DefaultDay<Long>{
         Set<Coordinate> obstacleCoordinates = new HashSet<>();
         while (guard.isInsideGrid()){
             stepCounter++;
-            Pair<Object> pair =  guard.moveAndPlaceObstacleInPath();
+            HomogenousPair<Object> pair =  guard.moveAndPlaceObstacleInPath();
             PuzzleMap m = (PuzzleMap) pair.getFirst();
             Coordinate c = (Coordinate) pair.getSecond();
             if (obstacleCoordinates.contains(c)){
