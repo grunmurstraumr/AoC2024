@@ -8,7 +8,7 @@ import java.util.regex.MatchResult;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class OperatorTest {
+public class OperatorPartOneTest {
 
     @Test
     void patternMatchingTest(){
