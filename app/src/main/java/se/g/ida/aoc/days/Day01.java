@@ -13,7 +13,7 @@ public class Day01 extends DefaultDay<Long> {
 
     public Day01(String inputFilename){
         super(inputFilename);
-        this.columns = ColumnSeparator.separate(FileReader.readInputFile(inputFilename), new LongMapper());
+        this.columns = ColumnSeparator.separate(FileReader.readInputFile(inputFilename), new LongMapper(), "\\b");
         this.rows = columns.getFirst().size();
         if (!columns.stream().allMatch(column -> column.size() == rows)){
             throw new IllegalArgumentException("All columns must have the same number of rows.");

@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 import static java.util.function.Predicate.not;
 
 public class ColumnSeparator {
-    public static <T> List<List<T>> separate(List<String> lines, LineMapper<T> columnMapper){
+    public static <T> List<List<T>> separate(List<String> lines, LineMapper<T> columnMapper, String separator){
         List<List<T>> columns = new ArrayList<>();
         for (String line : lines){
-            List<String> words = Stream.of(line.split("\\b")).filter(not(String::isBlank)).toList();
+            List<String> words = Stream.of(line.split(separator)).filter(not(String::isBlank)).toList();
             for (int columnIndex = 0; columnIndex < words.size(); columnIndex++){
                 if (columns.size() - 1 < columnIndex ) {
                     columns.add(new ArrayList<>(lines.size()));
@@ -27,7 +27,7 @@ public class ColumnSeparator {
 
     public static <T> List<List<T>> separate(String input, LineMapper<T> columnMapper){
         String[] lines = input.split("\\n");
-        return separate(List.of(lines), columnMapper);
+        return separate(List.of(lines), columnMapper, "\\b");
     }
 
     public static List<List<String>> separate(String input){
