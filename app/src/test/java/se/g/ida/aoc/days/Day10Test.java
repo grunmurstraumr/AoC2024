@@ -19,16 +19,6 @@ public class Day10Test {
     }
 
     @Test
-    void t(){
-        Map<String, Integer> m = new HashMap<>();
-        m.put("a", 0);
-        m.compute("a", (key, vale) -> ++vale);
-        m.compute("a", (key, vale) -> ++vale);
-        m.compute("a", (key, vale) -> ++vale);
-        m.compute("a", (key, vale) -> ++vale);
-        assertEquals(4, m.get("a"));
-    }
-    @Test
     void runPartOne() {
         Day<Long> day = new Day10(PUZZLE_INPUT);
         long answer = day.runPart1();
